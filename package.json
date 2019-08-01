@@ -1,5 +1,5 @@
 {
-  "name": "localdb",
+  "name": "ldb",
   "version": "0.0.3",
   "description": "Create and manage local db files and data",
   "main": "./index.js",
