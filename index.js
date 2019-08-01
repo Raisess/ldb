@@ -2,6 +2,15 @@ const fs = require('fs');
 
 const ldb = {};
 
+// criar uma pasta para armazenar os dados
+ldb.createDB = (path, name, callback)=>{
+	fs.mkdir(`${path}/${name}`, { recursive: true }, (err)=>{
+		if(err) throw err;
+
+		if(callback) callback();
+	});
+}
+
 // criar arquivo
 ldb.createDBFile = (path, file, callback)=>{
 	fs.writeFile(`${path}/${file}.ldb`, '', (err)=>{
@@ -31,6 +40,14 @@ ldb.renameDBFile = (oldPath, oldFile, newFile)=>{
 	});
 }
 
+// clonar os dados de um arquivos
+ldb.cloneDBFile = (path, file, toPath, toFile, callback)=>{
+	fs.copyFile(`${path}/${file}.ldb`, `${toPath}/${toFile}.ldb`, (err)=>{
+		if(err) throw err;
+
+		if(callback) callback();
+	});
+}
 
 // sobrescrever dados
 ldb.overwriteData = (path, file, content, callback)=>{
