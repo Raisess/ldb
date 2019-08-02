@@ -79,6 +79,8 @@ ldb.getData = (path, file, callback)=>{
 		if(err) throw err;
 
 		if(callback) callback(data);
+
+		return data;
 	});
 }
 

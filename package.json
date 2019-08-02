@@ -1,9 +1,9 @@
 {
   "name": "ldbjs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Create and manage local db files and data",
   "main": "./index.js",
-  "keywords": [],
+  "keywords": ["backend", "frontend", "fullstack", "local", "electron", "db", "data", "files"],
   "author": "raisess-Danilo_Santana",
   "preferGlobal": "true",
   "dependencies": {
