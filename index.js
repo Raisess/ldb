@@ -1,6 +1,9 @@
 const fs = require('fs');
+const event = require('./event.js');
 
 const ldb = {};
+
+ldb.event = event;
 
 // criar uma pasta para armazenar os dados
 ldb.createDB = (path, name, callback)=>{
