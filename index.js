@@ -15,8 +15,8 @@ ldb.createDB = (path, name, callback)=>{
 }
 
 // criar arquivo
-ldb.createDBFile = (path, file, callback)=>{
-	fs.writeFile(`${path}/${file}.ldb`, '', (err)=>{
+ldb.createDBFile = (path, db, file, callback)=>{
+	fs.writeFile(`${path}/${db}/${file}.ldb`, '', (err)=>{
 		if(err) throw err;
 
 		if(callback) callback();
@@ -24,18 +24,18 @@ ldb.createDBFile = (path, file, callback)=>{
 }
 
 // deletar arquivo
-ldb.deleteDBFile = (path, file, callback)=>{
-	fs.unlink(`${path}/${file}.ldb`, ()=>{
+ldb.deleteDBFile = (path, db, file, callback)=>{
+	fs.unlink(`${path}/${db}/${file}.ldb`, ()=>{
 		if(callback) callback();
 	});
 }
 
 // renomear arquivo
-ldb.renameDBFile = (oldPath, oldFile, newFile)=>{
-	fs.rename(`${oldPath}/${oldFile}.ldb`, `${oldPath}/${newFile}.ldb`, (err)=>{
+ldb.renameDBFile = (oldPath, oldDB, oldFile, newFile)=>{
+	fs.rename(`${oldPath}/${oldDB}/${oldFile}.ldb`, `${oldPath}/${oldDB}/${newFile}.ldb`, (err)=>{
 		if(err) throw err;
 
-		fs.stat(`${newPath}/${newFile}.ldb`, (err, stats)=>{
+		fs.stat(`${oldPath}/${oldDB}/${newFile}.ldb`, (err, stats)=>{
 			if(err) throw err;
 
 			console.log(`complete file stats: ${JSON.stringify(stats)}`);
@@ -44,8 +44,8 @@ ldb.renameDBFile = (oldPath, oldFile, newFile)=>{
 }
 
 // clonar os dados de um arquivos
-ldb.cloneDBFile = (path, file, toPath, toFile, callback)=>{
-	fs.copyFile(`${path}/${file}.ldb`, `${toPath}/${toFile}.ldb`, (err)=>{
+ldb.cloneDBFile = (path, db, file, toPath, toDB, toFile, callback)=>{
+	fs.copyFile(`${path}/${db}/${file}.ldb`, `${toPath}/${toDB}/${toFile}.ldb`, (err)=>{
 		if(err) throw err;
 
 		if(callback) callback();
@@ -53,8 +53,8 @@ ldb.cloneDBFile = (path, file, toPath, toFile, callback)=>{
 }
 
 // sobrescrever dados
-ldb.overwriteData = (path, file, content, callback)=>{
-	fs.writeFile(`${path}/${file}.ldb`, content, (err)=>{
+ldb.overwriteData = (path, db, file, content, callback)=>{
+	fs.writeFile(`${path}/${db}/${file}.ldb`, content, (err)=>{
 		if(err) throw err;
 
 		if(callback) callback();
@@ -62,8 +62,8 @@ ldb.overwriteData = (path, file, content, callback)=>{
 }
 
 // enviar dados, gera um erro se o arquivo não existir
-ldb.sendData = (path, file, content, callback)=>{
-	fs.readFile(`${path}/${file}.ldb`, (err, data)=>{
+ldb.sendData = (path, db, file, content, callback)=>{
+	fs.readFile(`${path}/${db}/${file}.ldb`, (err, data)=>{
 		if(err) throw err;
 
 		let beforeContent = data;
@@ -77,8 +77,8 @@ ldb.sendData = (path, file, content, callback)=>{
 }
 
 // pegar os dados de um arquivo
-ldb.getData = (path, file, callback)=>{
-	fs.readFile(`${path}/${file}.ldb`, (err, data)=>{
+ldb.getData = (path, db, file, callback)=>{
+	fs.readFile(`${path}/${db}/${file}.ldb`, (err, data)=>{
 		if(err) throw err;
 
 		if(callback) callback(data);
