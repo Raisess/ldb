@@ -161,8 +161,10 @@ ldb.json.sendData('.', 'myJSONDBName', 'myJSONFileName', myJSObj);
 
 // getting the data
 ldb.json.getData('.', 'myJSONDBName', 'myJSONFileName', (data)=>{
-    document.getElementById('demo').innerHTML = data;
+    document.getElementById('demo').innerHTML = JSON.parse(data);
 });
+// or to auto parse
+document.getElementById('demo').innerHTML =  ldb.json.getDate('.', 'myJSONDBName', 'myJSONFileName');
 ```
 
 While a data are getted a js obj are return, the api automatically convert the  json to a js object for you.
