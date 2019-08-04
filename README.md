@@ -98,7 +98,7 @@ let myData = 'I overwrited data!';
 ldb.sendData('.', 'myDB', 'myDBFile', myData); // optional callback
 
 ldb.cloneDBFile('.', 'myDB', 'myDBFile', '.', 'myDB', 'myOtherDBFile', ()=>{ // optional callback
-	console.log('')
+	console.log('cloned a db file');
 });
 ```
 
@@ -164,7 +164,7 @@ ldb.json.getData('.', 'myJSONDBName', 'myJSONFileName', (data)=>{
     document.getElementById('demo').innerHTML = JSON.parse(data);
 });
 // or to auto parse
-document.getElementById('demo').innerHTML =  ldb.json.getDate('.', 'myJSONDBName', 'myJSONFileName');
+document.getElementById('demo').innerHTML =  ldb.json.getData('.', 'myJSONDBName', 'myJSONFileName');
 ```
 
 While a data are getted a js obj are return, the api automatically convert the  json to a js object for you.

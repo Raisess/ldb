@@ -1,6 +1,6 @@
 {
   "name": "ldbjs",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Create and manage local db files and data",
   "main": "./index.js",
   "keywords": [
