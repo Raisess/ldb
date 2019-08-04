@@ -1,9 +1,12 @@
 const fs = require('fs');
 const event = require('./event.js');
+const json = require('./json.js');
 
 const ldb = {};
 
 ldb.event = event;
+
+ldb.json = json;
 
 // criar uma pasta para armazenar os dados
 ldb.createDB = (path, name, callback)=>{
@@ -63,12 +66,15 @@ ldb.overwriteData = (path, db, file, content, callback)=>{
 
 // enviar dados, gera um erro se o arquivo não existir
 ldb.sendData = (path, db, file, content, callback)=>{
+
+	let beforeContent;
+
 	fs.readFile(`${path}/${db}/${file}.ldb`, (err, data)=>{
 		if(err) throw err;
 
-		let beforeContent = data;
+		beforeContent = data;
 
-		fs.writeFile(`${path}/${file}.ldb`, `${beforeContent} ${content}`, (err)=>{
+		fs.writeFile(`${path}/${db}/${file}.ldb`, beforeContent+content+'\n', (err)=>{
 			if(err) throw err;
 
 			if(callback) callback();

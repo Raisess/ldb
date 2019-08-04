@@ -1,10 +1,22 @@
 {
   "name": "ldbjs",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Create and manage local db files and data",
   "main": "./index.js",
-  "keywords": ["backend", "frontend", "fullstack", "local", "electron", "db", "database", "data", "files"],
+  "keywords": [
+  	"backend",
+  	"frontend",
+  	"fullstack",
+  	"local",
+  	"electron",
+  	"db",
+  	"database",
+  	"data",
+  	"files",
+  	"json"
+  ],
   "author": "raisess-Danilo_Santana",
+  "homepage": "https://github.com/Raisess/ldbjs",
   "preferGlobal": "true",
   "dependencies": {
   	"file-system": "^2.2.2"
