@@ -199,7 +199,7 @@ ldb.base64.encode(str);
 // returns SGVsbG8gV29ybGQh
 
 // to decode a string
-ldb.decode(str);
+ldb.base64.decode(str);
 // returns Hello World!
 ```
 
