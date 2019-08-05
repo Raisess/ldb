@@ -1,3 +1,4 @@
+// event module
 const EventEmmiter = require('events');
 
 class Emmiter extends EventEmmiter {}

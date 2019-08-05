@@ -1,14 +1,21 @@
 const fs = require('fs');
 const event = require('./event.js');
 const json = require('./json.js');
+const base = require('./base64.js');
 
 const ldb = {};
 
+// put the event module in the main module
 ldb.event = event;
-
+// put the json module in the main module
 ldb.json = json;
+// put the base64 module in the main module
+ldb.base64 = base;
 
-// criar uma pasta para armazenar os dados
+// get the project dir path
+ldb.dir = __dirname;
+
+// crieate a folder to place the dbfiles
 ldb.createDB = (path, name, callback)=>{
 	fs.mkdir(`${path}/${name}`, { recursive: true }, (err)=>{
 		if(err) throw err;
@@ -17,7 +24,7 @@ ldb.createDB = (path, name, callback)=>{
 	});
 }
 
-// criar arquivo
+// create dbfiles
 ldb.createDBFile = (path, db, file, callback)=>{
 	fs.writeFile(`${path}/${db}/${file}.ldb`, '', (err)=>{
 		if(err) throw err;
@@ -26,18 +33,18 @@ ldb.createDBFile = (path, db, file, callback)=>{
 	});
 }
 
-// deletar arquivo
+// delete files
 ldb.deleteDBFile = (path, db, file, callback)=>{
 	fs.unlink(`${path}/${db}/${file}.ldb`, ()=>{
 		if(callback) callback();
 	});
 }
 
-// renomear arquivo
+// rename files
 ldb.renameDBFile = (oldPath, oldDB, oldFile, newFile)=>{
 	fs.rename(`${oldPath}/${oldDB}/${oldFile}.ldb`, `${oldPath}/${oldDB}/${newFile}.ldb`, (err)=>{
 		if(err) throw err;
-
+		// show the new stats in the console
 		fs.stat(`${oldPath}/${oldDB}/${newFile}.ldb`, (err, stats)=>{
 			if(err) throw err;
 
@@ -46,7 +53,7 @@ ldb.renameDBFile = (oldPath, oldDB, oldFile, newFile)=>{
 	});
 }
 
-// clonar os dados de um arquivos
+// clone db file
 ldb.cloneDBFile = (path, db, file, toPath, toDB, toFile, callback)=>{
 	fs.copyFile(`${path}/${db}/${file}.ldb`, `${toPath}/${toDB}/${toFile}.ldb`, (err)=>{
 		if(err) throw err;
@@ -55,7 +62,7 @@ ldb.cloneDBFile = (path, db, file, toPath, toDB, toFile, callback)=>{
 	});
 }
 
-// sobrescrever dados
+// overwrite db file data
 ldb.overwriteData = (path, db, file, content, callback)=>{
 	fs.writeFile(`${path}/${db}/${file}.ldb`, content, (err)=>{
 		if(err) throw err;
@@ -64,7 +71,7 @@ ldb.overwriteData = (path, db, file, content, callback)=>{
 	})
 }
 
-// enviar dados, gera um erro se o arquivo não existir
+// send data to dbfile
 ldb.sendData = (path, db, file, content, callback)=>{
 
 	let beforeContent;
@@ -82,14 +89,24 @@ ldb.sendData = (path, db, file, content, callback)=>{
 	});
 }
 
-// pegar os dados de um arquivo
+// get data from dbfile
 ldb.getData = (path, db, file, callback)=>{
 	fs.readFile(`${path}/${db}/${file}.ldb`, (err, data)=>{
 		if(err) throw err;
 
-		if(callback) callback(data);
+		if(callback) callback(data.toString());
+	});
+}
 
-		return data;
+// list the db files in the folder, in a console table
+ldb.getDBFiles = (path, db, callback)=>{
+	fs.readdir(`${path}/${db}`, (err, files)=>{
+		if(err) throw err;
+
+		if(callback) callback();
+
+		console.table(files);
+		return files;
 	});
 }
 

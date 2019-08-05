@@ -1,6 +1,6 @@
-# ldb
+# ldbjs
 A lib to create and manage local db files and data, whit a simple send and get system,  
-save any data, html content, js objects and arrays, some texts, anything.
+save any data, html content, js objects and arrays, json, some texts, anything.
 
 
 ##### The erros in the operations is automatically returned not include in yours callbacks.
@@ -50,23 +50,41 @@ Sent data is saved **exactly** as sent
 ### Getting data from dbfile  
 
 ```javascript
-// electron example
 const ldb = require('ldbjs');
 
-let myPTag = document.getElementById('myP');
-
-myPTag.innerHTML = ldb.getData('.', 'myDB', 'myDBFile'); // returns data of the file
-console.log(ldb.getData('.', 'myDB', 'myDBFile')); // returns data in buffer format of the file
-
-ldb.getData('.', 'myDB', 'myDBFile', (data)=>{ // optional callback
-	myPTag.innerHTML = data;
+ldb.getData('.', 'myDB', 'myDBFile', (data)=>{ // use callback
+	console.log(data);
 });
 ```
 
-The returned value is a json with the properties type and data, type is buffer and data is content,  
-while **on console** prints **array with buffer**, while on **html component returns  
-exactly the data on the screen**.
+The returned value is the **data** of the file.  
+This function is used only with a callback to get the parameter.
 
+### Getting the DB files name
+
+```javascript
+const ldb = require('ldbjs');
+
+// ldb.dir is the project location
+ldb.createDB(ldb.dir, 'db');
+
+ldb.createDBFile(ldb.dir, 'db', 'test');
+ldb.createDBFile(ldb.dir, 'db', 'hello');
+ldb.json.createDBFile(ldb.dir, 'db', 'world');
+
+// this return a table on console with the all files in the db
+ldb.getDBFiles(ldb.dir, 'db');
+```
+
+To use a callback in that function use like this
+
+```javascript
+ldb.getDBFiles(ldb.dir, 'db', (files)=>{
+    console.log(files);
+});
+```
+
+This function return the files name.
 
 ### To overwrite data of the file  
 
@@ -90,7 +108,6 @@ That action is **irreversible**.
 const ldb = require('ldbjs');
 
 ldb.createDB('.', 'myDB');
-ldb.createDBFile('.', 'myDB', 'myDBFile');
 ldb.createDBFile('.', 'myDB', 'myDBFile');
 
 let myData = 'I overwrited data!';
@@ -120,6 +137,7 @@ That action is **irreversible**.
 
 ```javascript
 const ldb = require('ldbjs');
+
 ldb.renameDBFile('.', 'myDB', 'myDBFile', 'myNewDBFileName');
 ```
 
@@ -139,7 +157,7 @@ ldb.event.emit('create a DB', '.', 'myDB');
 
 Events are a very simple way to create and manage DBs and DBfiles in your application, don't repeat code anymore.
 
-### Sendding and getting data in a json
+### Sendding and getting data from json
 
 ```javascript
 const ldb = require('ldbjs');
