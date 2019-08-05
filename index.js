@@ -103,7 +103,7 @@ ldb.getDBFiles = (path, db, callback)=>{
 	fs.readdir(`${path}/${db}`, (err, files)=>{
 		if(err) throw err;
 
-		if(callback) callback();
+		if(callback) callback(files);
 
 		console.table(files);
 		return files;
