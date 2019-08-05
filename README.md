@@ -186,3 +186,21 @@ document.getElementById('demo').innerHTML =  ldb.json.getData('.', 'myJSONDBName
 ```
 
 While a data are getted a js obj are return, the api automatically convert the  json to a js object for you.
+
+### Base64 encode and decode
+
+```javascript
+const ldb = require('ldbjs');
+
+let str = 'Hello World!';
+
+// to encode a string
+ldb.base64.encode(str);
+// returns SGVsbG8gV29ybGQh
+
+// to decode a string
+ldb.decode(str);
+// returns Hello World!
+```
+
+This process use the base-64 module, this is downloaded like a dependecie.
