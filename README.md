@@ -157,7 +157,7 @@ ldb.event.emit('create a DB', '.', 'myDB');
 
 Events are a very simple way to create and manage DBs and DBfiles in your application, don't repeat code anymore.
 
-### Sendding and getting data from json
+### Sending and getting data from json
 
 ```javascript
 const ldb = require('ldbjs');

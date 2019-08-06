@@ -24,10 +24,7 @@ json.getData = (path, db, file, callback)=>{
 	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{
 		if(err) throw err;
 
-		if(callback) callback(data);
-
-
-		return JSON.parse(data);
+		if(callback) callback(JSON.parse(data));
 	});
 }
 

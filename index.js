@@ -35,7 +35,9 @@ ldb.createDBFile = (path, db, file, callback)=>{
 
 // delete files
 ldb.deleteDBFile = (path, db, file, callback)=>{
-	fs.unlink(`${path}/${db}/${file}.ldb`, ()=>{
+	fs.unlink(`${path}/${db}/${file}.ldb`, (err)=>{
+		if(err) throw err;
+
 		if(callback) callback();
 	});
 }
@@ -106,7 +108,6 @@ ldb.getDBFiles = (path, db, callback)=>{
 		if(callback) callback(files);
 
 		console.table(files);
-		return files;
 	});
 }
 
