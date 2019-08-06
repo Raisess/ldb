@@ -179,10 +179,8 @@ ldb.json.sendData('.', 'myJSONDBName', 'myJSONFileName', myJSObj);
 
 // getting the data
 ldb.json.getData('.', 'myJSONDBName', 'myJSONFileName', (data)=>{
-    document.getElementById('demo').innerHTML = JSON.parse(data);
+    cosole.log(data);
 });
-// or to auto parse
-document.getElementById('demo').innerHTML =  ldb.json.getData('.', 'myJSONDBName', 'myJSONFileName');
 ```
 
 While a data are getted a js obj are return, the api automatically convert the  json to a js object for you.
@@ -204,3 +202,5 @@ ldb.base64.decode(str);
 ```
 
 This process use the base-64 module, this is downloaded like a dependecie.
+
+#### To report bugs or open a inssue in [github repo](https://github.com/raisses/ldbjs) or send a email to **danilosantana456789@gmail.com** no spam pls.
