@@ -12,7 +12,7 @@ ldb.json = json;
 // put the base64 module in the main module
 ldb.base64 = base;
 
-// get the project dir path
+// get the ldb dir path
 ldb.dir = __dirname;
 
 // crieate a folder to place the dbfiles
@@ -108,6 +108,25 @@ ldb.getDBFiles = (path, db, callback)=>{
 		if(callback) callback(files);
 
 		console.table(files);
+	});
+}
+// backup of file data
+ldb.backup = (path, db, file, callback)=>{
+	s.writeFile(`${path}/${db}/${file}.backup.ldb`, '', (err)=>{
+		if(err) throw err;
+		fs.copyFile(`${path}/${db}/${file}.ldb`, `${path}/${db}/${file}.backup.ldb`, (err)=>{
+			if(err) throw err;
+
+			if(callback) callback();
+		});
+	}
+}
+// rollback backup to file
+ldb.rollback = (path, db, file, callback)=>{
+	fs.copyFile(`${path}/${db}/${file}.backup.ldb`, `${path}/${db}/${file}.ldb`, (err)=>{
+		if(err) throw err;
+
+		if(callback) callback();
 	});
 }
 

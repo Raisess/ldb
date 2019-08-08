@@ -203,4 +203,20 @@ ldb.base64.decode(str);
 
 This process use the base-64 module, this is downloaded like a dependecie.
 
+### Backup and rollback
+
+```javascript
+const ldb = require('ldbjs');
+
+ldb.backup('.', 'dbName', 'fileName');
+// create a fileName.backup.ldb file
+
+ldb.roolback('.', 'dbName', 'fileName');
+// get the fileName.backup.ldb data and put in fileName.ldb
+
+// To use in json is very similar, put the json module
+ldb.json.backup('.', 'dbName', 'fileName');
+// use the same logic
+```
+
 #### To report bugs or open a inssue in [github repo](https://github.com/raisses/ldbjs) or send a email to **danilosantana456789@gmail.com** no spam pls.
