@@ -36,7 +36,7 @@ json.backup = (path, db, file, callback)=>{
 
 			if(callback) callback();
 		});
-	}
+	});
 }
 // rollback backup to file
 json.rollback = (path, db, file, callback)=>{

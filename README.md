@@ -211,7 +211,7 @@ const ldb = require('ldbjs');
 ldb.backup('.', 'dbName', 'fileName');
 // create a fileName.backup.ldb file
 
-ldb.roolback('.', 'dbName', 'fileName');
+ldb.rollback('.', 'dbName', 'fileName');
 // get the fileName.backup.ldb data and put in fileName.ldb
 
 // To use in json is very similar, put the json module

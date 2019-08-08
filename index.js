@@ -119,7 +119,7 @@ ldb.backup = (path, db, file, callback)=>{
 
 			if(callback) callback();
 		});
-	}
+	});
 }
 // rollback backup to file
 ldb.rollback = (path, db, file, callback)=>{
