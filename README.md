@@ -219,4 +219,4 @@ ldb.json.backup('.', 'dbName', 'fileName');
 // use the same logic
 ```
 
-#### To report bugs or open a inssue in [github repo](https://github.com/raisses/ldbjs) or send a email to **danilosantana456789@gmail.com** no spam pls.
+#### To report bugs or open a inssue in [github repo](https://github.com/raisess/ldbjs) or send a email to **danilosantana456789@gmail.com** no spam pls.

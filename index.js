@@ -76,12 +76,10 @@ ldb.overwriteData = (path, db, file, content, callback)=>{
 // send data to dbfile
 ldb.sendData = (path, db, file, content, callback)=>{
 
-	let beforeContent;
-
 	fs.readFile(`${path}/${db}/${file}.ldb`, (err, data)=>{
 		if(err) throw err;
 
-		beforeContent = data;
+		let beforeContent = data;
 
 		fs.writeFile(`${path}/${db}/${file}.ldb`, beforeContent+content+'\n', (err)=>{
 			if(err) throw err;
