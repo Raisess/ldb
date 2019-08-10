@@ -185,6 +185,27 @@ ldb.json.getData('.', 'myJSONDBName', 'myJSONFileName', (data)=>{
 
 While a data are getted a js obj are return, the api automatically convert the  json to a js object for you.
 
+### JSON insert
+
+```javascript
+const ldb = require('ldbjs');
+
+ldb.json.createDBFile('.', 'myJSONDBName', 'myJSONFileName');
+
+let myJSObj = {
+    name: "Jhon",
+    age: 27
+};
+
+ldb.json.sendData('.', 'myJSONDBName', 'myJSONFileName', myJSObj);
+
+ldb.json.insert('.', 'myJSONDBName', 'myJSONFileName', 'name', 'Alex', ()=>{
+  // some code
+});
+
+To insert data use the index propertie to put a new value, this function must  
+have a json file not empty to work.
+
 ### Base64 encode and decode
 
 ```javascript
