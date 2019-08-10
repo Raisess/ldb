@@ -11,6 +11,9 @@ save any data, html content, js objects and arrays, json, some texts, anything.
 const ldb = require('ldbjs');
 
 ldb.createDB('.', 'myDB'); // optional callback
+
+// this function create ldb DB and json DB
+ldb.createDB('.', 'myJsonDB');
 ```
 
 And your db are created.
