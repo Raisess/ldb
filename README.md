@@ -202,6 +202,7 @@ ldb.json.sendData('.', 'myJSONDBName', 'myJSONFileName', myJSObj);
 ldb.json.insert('.', 'myJSONDBName', 'myJSONFileName', 'name', 'Alex', ()=>{
   // some code
 });
+```
 
 To insert data use the index propertie to put a new value, this function must  
 have a json file not empty to work.
