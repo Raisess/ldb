@@ -22,14 +22,17 @@ json.sendData = (path, db, file, jsObj, callback)=>{
 }
 
 // insert data to a exists json
-json.insert = (path, db, file, index, insert, callback)=>{
+json.insert = (path, db, file, args, index, insert, callback)=>{
 	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{
 		if(err) throw err;
 
 		let json;
 
 		json = JSON.parse(data);
-		json[index] = insert;
+
+		if(args === '' || args === null || args === undefined) json[index] = insert;
+
+		if(args !== '' && args !== null && args !== undefined) json[args][index] = insert;
 
 		fs.writeFile(`${path}/${db}/${file}.json`, JSON.stringify(json), (err)=>{
 			if(err) throw err;

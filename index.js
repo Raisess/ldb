@@ -75,7 +75,6 @@ ldb.overwriteData = (path, db, file, content, callback)=>{
 
 // send data to dbfile
 ldb.sendData = (path, db, file, content, callback)=>{
-
 	fs.readFile(`${path}/${db}/${file}.ldb`, (err, data)=>{
 		if(err) throw err;
 
@@ -108,9 +107,10 @@ ldb.getDBFiles = (path, db, callback)=>{
 		console.table(files);
 	});
 }
+
 // backup of file data
 ldb.backup = (path, db, file, callback)=>{
-	s.writeFile(`${path}/${db}/${file}.backup.ldb`, '', (err)=>{
+	fs.writeFile(`${path}/${db}/${file}.backup.ldb`, '', (err)=>{
 		if(err) throw err;
 		fs.copyFile(`${path}/${db}/${file}.ldb`, `${path}/${db}/${file}.backup.ldb`, (err)=>{
 			if(err) throw err;
@@ -119,6 +119,7 @@ ldb.backup = (path, db, file, callback)=>{
 		});
 	});
 }
+
 // rollback backup to file
 ldb.rollback = (path, db, file, callback)=>{
 	fs.copyFile(`${path}/${db}/${file}.backup.ldb`, `${path}/${db}/${file}.ldb`, (err)=>{

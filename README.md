@@ -26,6 +26,8 @@ const ldb = require('ldbjs');
 
 ldb.createDB('.', 'myDB'); // optional callback
 ldb.createDBFile('.', 'myDB', 'myDBFile'); // optional callback
+
+// ldb.createDBFile(path, db, file);
 ```
 
 The file extension are **.ldb**.
@@ -197,14 +199,21 @@ ldb.json.createDBFile('.', 'myJSONDBName', 'myJSONFileName');
 
 let myJSObj = {
     name: "Jhon",
-    age: 27
+    age: 27,
+    parents: {
+        bro: "Fred"
+    }
 };
 
 ldb.json.sendData('.', 'myJSONDBName', 'myJSONFileName', myJSObj);
 
-ldb.json.insert('.', 'myJSONDBName', 'myJSONFileName', 'name', 'Alex', ()=>{
+// without args
+ldb.json.insert('.', 'myJSONDBName', 'myJSONFileName', null, 'name', 'Alex', ()=>{
   // some code
 });
+
+// with args
+ldb.json.insert('.', 'myJSONDBName', 'myJSONFileName', 'parents', 'bro', 'Daniel');
 ```
 
 To insert data use the index propertie to put a new value, this function must  
