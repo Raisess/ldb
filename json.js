@@ -21,17 +21,15 @@ json.sendData = (path, db, file, jsObj, callback)=>{
 	});
 }
 
+/*#####################################################################################*/
 // insert data to a exists json
 json.insert = (path, db, file, args, index, insert, callback)=>{
 	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{
 		if(err) throw err;
 
-		let json;
-
-		json = JSON.parse(data);
-
+		let json = JSON.parse(data);
+		// insert data to the specific index and propertie
 		if(args === '' || args === null || args === undefined) json[index] = insert;
-
 		if(args !== '' && args !== null && args !== undefined) json[args][index] = insert;
 
 		fs.writeFile(`${path}/${db}/${file}.json`, JSON.stringify(json), (err)=>{
@@ -41,6 +39,58 @@ json.insert = (path, db, file, args, index, insert, callback)=>{
 		});
 	});
 }
+// push data to json field array
+json.push = (path, db, file, args, index, push, callback)=>{
+	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{
+		if(err) throw err;
+
+		let json = JSON.parse(data);
+		// push data to the specific index and propertie
+		if(args === '' || args === null || args === undefined) json[index].push(push);
+		if(args !== '' && args !== null && args !== undefined) json[args][index].push(push);
+
+		fs.writeFile(`${path}/${db}/${file}.json`, JSON.stringify(json), (err)=>{
+			if(err) throw err;
+
+			if(callback) callback();
+		});
+	});
+}
+// add a sum value to json field
+json.add = (path, db, file, args, index, add, callback)=>{
+	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{
+		if(err) throw err;
+
+		let json = JSON.parse(data);
+		// add data to the specific index and propertie
+		if(args === '' || args === null || args === undefined) json[index] += add;
+		if(args !== '' && args !== null && args !== undefined) json[args][index] += add;
+
+		fs.writeFile(`${path}/${db}/${file}.json`, JSON.stringify(json), (err)=>{
+			if(err) throw err;
+
+			if(callback) callback();
+		});
+	});
+}
+// revome a value for json field
+json.remove = (path, db, file, args, index, remove, callback)=>{
+	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{
+		if(err) throw err;
+
+		let json = JSON.parse(data);
+		// remove data to the specific index and propertie
+		if(args === '' || args === null || args === undefined) json[index] -= remove;
+		if(args !== '' && args !== null && args !== undefined) json[args][index] -= remove;
+
+		fs.writeFile(`${path}/${db}/${file}.json`, JSON.stringify(json), (err)=>{
+			if(err) throw err;
+
+			if(callback) callback();
+		});
+	});
+}
+/*#####################################################################################*/
 
 // parse a JSON to JS obj and get data
 json.getData = (path, db, file, callback)=>{

@@ -168,22 +168,22 @@ const ldb = require('ldbjs');
 
 // creating a json dbfile
 ldb.json.createDBFile('.', 'myJSONDBName', 'myJSONFileName', ()=>{
-    // optional callback
-    console.log('json dbfile created');
+  // optional callback
+  console.log('json dbfile created');
 });
 
 // sending the data
 
 let myJSObj = {
-    name: "Jhon",
-    age: 27
+  name: "Jhon",
+  age: 27
 };
 
 ldb.json.sendData('.', 'myJSONDBName', 'myJSONFileName', myJSObj);
 
 // getting the data
 ldb.json.getData('.', 'myJSONDBName', 'myJSONFileName', (data)=>{
-    cosole.log(data);
+  cosole.log(data);
 });
 ```
 
@@ -197,11 +197,11 @@ const ldb = require('ldbjs');
 ldb.json.createDBFile('.', 'myJSONDBName', 'myJSONFileName');
 
 let myJSObj = {
-    name: "Jhon",
-    age: 27,
-    parents: {
-        bro: "Fred"
-    }
+  name: "Jhon",
+  age: 27,
+  parents: {
+    bro: "Fred"
+  }
 };
 
 ldb.json.sendData('.', 'myJSONDBName', 'myJSONFileName', myJSObj);
@@ -217,6 +217,31 @@ ldb.json.insert('.', 'myJSONDBName', 'myJSONFileName', 'parents', 'bro', 'Daniel
 
 To insert data use the index propertie to put a new value, this function must  
 have a json file not empty to work.
+
+### JSON push, add and remove
+
+```javascript
+const ldb = require('ldbjs');
+
+ldb.json.createDBFile('.', 'myJSONDBName', 'myJSONFileName');
+
+let obj = {
+  arr: []
+};
+
+ldb.json.sendData('.', 'myJSONDBName', 'myJSONFileName', obj);
+ldb.json.push('.', 'myJSONDBName', 'myJSONFileName', null, 'arr', 1);
+// push 1 to json 'arr' array
+ldb.json.add('.', 'myJSONDBName', 'myJSONFileName', null, 'arr', 2);
+// add sum 2 to json 'arr' array
+
+// results its like {"arr": [3]}
+
+ldb.json.remove('.', 'myJSONDBName', 'myJSONFileName', null, 'arr', 1);
+// remove 1 from original value 3
+
+// results its like {"arr": [2]}
+```
 
 ### Base64 encode and decode
 
