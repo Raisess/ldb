@@ -1,9 +1,10 @@
 {
   "name": "ldbjs",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Create and manage local db files and data",
   "main": "./index.js",
   "keywords": [
+    "node",
     "backend",
     "frontend",
     "fullstack",
@@ -14,6 +15,7 @@
     "data",
     "files",
     "json",
+    "JSON",
     "localstorage",
     "base64"
   ],

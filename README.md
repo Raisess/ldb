@@ -65,26 +65,25 @@ ldb.getData('.', 'myDB', 'myDBFile', (data)=>{ // use callback
 The returned value is the **data** of the file.  
 This function is used only with a callback to get the parameter.
 
-### Getting the DB files name
+### Getting the DB files list
 
 ```javascript
 const ldb = require('ldbjs');
 
-// ldb.dir is the project location
-ldb.createDB(ldb.dir, 'db');
+ldb.createDB('.', 'db');
 
-ldb.createDBFile(ldb.dir, 'db', 'test');
-ldb.createDBFile(ldb.dir, 'db', 'hello');
-ldb.json.createDBFile(ldb.dir, 'db', 'world');
+ldb.createDBFile('.', 'db', 'test');
+ldb.createDBFile('.', 'db', 'hello');
+ldb.json.createDBFile('.', 'db', 'world');
 
 // this return a table on console with the all files in the db
-ldb.getDBFiles(ldb.dir, 'db');
+ldb.getDBFiles('.', 'db');
 ```
 
 To use a callback in that function use like this
 
 ```javascript
-ldb.getDBFiles(ldb.dir, 'db', (files)=>{
+ldb.getDBFiles('.', 'db', (files)=>{
     console.log(files);
 });
 ```
