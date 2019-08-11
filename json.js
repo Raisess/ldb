@@ -11,6 +11,7 @@ json.createDBFile = (path, db, file, callback)=>{
 		if(callback) callback();
 	});
 }
+
 // parse a JS obj to JSON string notation and send
 json.sendData = (path, db, file, jsObj, callback)=>{
 	fs.writeFile(`${path}/${db}/${file}.json`, JSON.stringify(jsObj), (err)=>{
@@ -19,19 +20,25 @@ json.sendData = (path, db, file, jsObj, callback)=>{
 		if(callback) callback();
 	});
 }
+
 // insert data to a exists json
 json.insert = (path, db, file, index, insert, callback)=>{
 	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{
 		if(err) throw err;
 
-		jsON = JSON.parse(data);
-		jsON[index] = insert;
+		let json;
 
-		fs.writeFile(`${path}/${db}/${file}.json`, JSON.stringify(jsON), ()=>{
+		json = JSON.parse(data);
+		json[index] = insert;
+
+		fs.writeFile(`${path}/${db}/${file}.json`, JSON.stringify(json), (err)=>{
+			if(err) throw err;
+
 			if(callback) callback();
 		});
 	});
 }
+
 // parse a JSON to JS obj and get data
 json.getData = (path, db, file, callback)=>{
 	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{
@@ -41,6 +48,7 @@ json.getData = (path, db, file, callback)=>{
 	});
 }
 
+// delete json file
 json.deleteDBFile = (path, db, file, callback)=>{
 	fs.unlink(`${path}/${db}/${file}.json`, (err)=>{
 		if(err) throw err;
@@ -60,6 +68,7 @@ json.backup = (path, db, file, callback)=>{
 		});
 	});
 }
+
 // rollback backup to file
 json.rollback = (path, db, file, callback)=>{
 	fs.copyFile(`${path}/${db}/${file}.backup.json`, `${path}/${db}/${file}.json`, (err)=>{

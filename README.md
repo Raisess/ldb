@@ -165,7 +165,7 @@ Events are a very simple way to create and manage DBs and DBfiles in your applic
 ```javascript
 const ldb = require('ldbjs');
 
-// createing a json dbfile
+// creating a json dbfile
 ldb.json.createDBFile('.', 'myJSONDBName', 'myJSONFileName', ()=>{
     // optional callback
     console.log('json dbfile created');
