@@ -39,6 +39,22 @@ json.insert = (path, db, file, args, index, insert, callback)=>{
 		});
 	});
 }
+json.delete = (path, db, file, args, index, callback)=>{
+	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{
+		if(err) throw err;
+
+		let json = JSON.parse(data);
+
+		if(args === '' || args === null || args === undefined) delete json[index];;
+		if(args !== '' && args !== null && args !== undefined) delete json[args][index];;
+
+		fs.writeFile(`${path}/${db}/${file}.json`, JSON.stringify(json), (err)=>{
+			if(err) throw err;
+
+			if(callback) callback();
+		});
+	});
+}
 // push data to json field array
 json.push = (path, db, file, args, index, push, callback)=>{
 	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{

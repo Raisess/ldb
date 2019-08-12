@@ -1,6 +1,6 @@
 # ldbjs
 A lib to create and manage local db files and data, whit a simple send and get system,  
-save any data, html content, js objects and arrays, json, some texts, anything.
+save any data, html content, js objects and arrays, JSON, some texts, anything.
 
 
 ##### The erros in the operations is automatically returned not include in yours callbacks.
@@ -189,7 +189,7 @@ ldb.json.getData('.', 'myJSONDBName', 'myJSONFileName', (data)=>{
 
 While a data are getted a js obj are return, the api automatically convert the  json to a js object for you.
 
-### JSON insert
+### JSON insert and delete
 
 ```javascript
 const ldb = require('ldbjs');
@@ -213,6 +213,12 @@ ldb.json.insert('.', 'myJSONDBName', 'myJSONFileName', null, 'name', 'Alex', ()=
 
 // with args
 ldb.json.insert('.', 'myJSONDBName', 'myJSONFileName', 'parents', 'bro', 'Daniel');
+
+// to create new property
+ldb.json.insert('.', 'myJSONDBName', 'myJSONFileName', null, 'lastName', 'Drake');
+
+// to delete a property
+ldb.json.delete('.', 'myJSONDBName', 'myJSONFileName', null, 'parents');
 ```
 
 To insert data use the index propertie to put a new value, this function must  
