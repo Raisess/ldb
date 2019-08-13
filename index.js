@@ -6,6 +6,17 @@ const base = require('./base64.js');
 
 const ldb = {};
 
+ldb.permissions = {
+	rwe: 7,
+	rw: 6,
+	re: 5,
+	r: 4,
+	we: 3,
+	w: 2,
+	e: 1,
+	no_permission: 0
+};
+
 // put the event module in the main module
 ldb.event = event;
 // put the json module in the main module
@@ -124,6 +135,15 @@ ldb.backup = (path, db, file, callback)=>{
 // rollback backup to file
 ldb.rollback = (path, db, file, callback)=>{
 	fs.copyFile(`${path}/${db}/${file}.backup.ldb`, `${path}/${db}/${file}.ldb`, (err)=>{
+		if(err) throw err;
+
+		if(callback) callback();
+	});
+}
+
+// give the file permissions
+ldb.permission = (path, db, file, mode, callback)=>{
+	fs.chmod(`${path}/${db}/${file}.ldb` , mode, (err)=>{
 		if(err) throw err;
 
 		if(callback) callback();

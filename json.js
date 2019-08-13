@@ -39,6 +39,7 @@ json.insert = (path, db, file, args, index, insert, callback)=>{
 		});
 	});
 }
+// to delete json property
 json.delete = (path, db, file, args, index, callback)=>{
 	fs.readFile(`${path}/${db}/${file}.json`, (err, data)=>{
 		if(err) throw err;
@@ -141,6 +142,15 @@ json.backup = (path, db, file, callback)=>{
 // rollback backup to file
 json.rollback = (path, db, file, callback)=>{
 	fs.copyFile(`${path}/${db}/${file}.backup.json`, `${path}/${db}/${file}.json`, (err)=>{
+		if(err) throw err;
+
+		if(callback) callback();
+	});
+}
+
+// give the file permissions
+json.permission = (path, db, file, mode, callback)=>{
+	fs.chmod(`${path}/${db}/${file}.json` , mode, (err)=>{
 		if(err) throw err;
 
 		if(callback) callback();
